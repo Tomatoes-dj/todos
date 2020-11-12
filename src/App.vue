@@ -16,7 +16,7 @@
         <!-- 删除链接 -->
         <a slot="actions" @click="removeItem(item.id)">删除</a>
       </a-list-item>
-
+{{info}}
       <!-- footer区域 -->
       <div slot="footer" class="footer">
         <!-- 未完成的任务个数 -->
@@ -52,11 +52,17 @@ export default {
   name: 'app',
   data() {
     return {
-      // 如何将state.list保存为data中的值
+      // 如何将state.list保存为data中的值： Watch 以下
+      info:[]
     }
   },
   created() {
     this.getList()
+  },
+  watch:{
+    infoList(newValue){
+      this.info=newValue
+    }
   },
   computed: {
     ...mapState(['inputValue', 'showKey']),
